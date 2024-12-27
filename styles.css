@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+    width: 300px;
+}
+
+h1 {
+    font-size: 20px;
+    color: #333;
+}
+
+.price-container {
+    margin-top: 20px;
+}
+
+#gold-price,
+#bitcoin-price {
+    font-size: 16px;
+    margin: 10px 0;
+}
