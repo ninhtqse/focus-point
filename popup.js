@@ -119,9 +119,10 @@ async function fetchSilverPriceVN()
         let url = 'https://giabac.phuquygroup.vn/';
         // Gọi đến web khác
         const res = await fetch(url, {
-        headers: {
-            'User-Agent': 'Mozilla/5.0 (Chrome Extension)',
-        },
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
+                'Referer': 'https://www.google.com/',
+            },
         });
 
         const html = await res.text();
