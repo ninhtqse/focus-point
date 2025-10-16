@@ -113,31 +113,35 @@ async function fetchGoldPriceVN() {
     }
 }
 
-async function fetchSilverPriceVN()
-{
-    try {
-        let url = 'https://giabac.phuquygroup.vn/';
-        // Gọi đến web khác
-        const res = await fetch(url, {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
-                'Referer': 'https://www.google.com/',
-            },
-        });
+async function fetchSilverPriceVN() {
+  try {
+    const url = 'https://giabac.vn/SilverInfo/FilterData';
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      body: 'filterType=%23pills-profile'
+    });
 
-        const html = await res.text();
+    const html = await res.text();
 
-        // Parse HTML thành DOM
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
+    // Parse HTML
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
 
-        // Lấy nội dung trong class .price (đổi theo nhu cầu)
-        const values = [...doc.querySelectorAll('.col-buy-cell')].map(el => el.textContent.trim());
+    // Lấy giá mua/bán
+    const buyEl = doc.querySelector('.text-red');
+    const sellEl = doc.querySelector('.text-green');
 
-        return [`${values[1]} ₫`, `${values[2]} ₫`];
-    } catch (err) {
-        document.getElementById('output').textContent = 'Lỗi: ' + err.message;
-    }
+    const buy = buyEl ? buyEl.textContent.trim() : '-';
+    const sell = sellEl ? sellEl.textContent.trim() : '-';
+
+    return [`${buy} ₫`, `${sell} ₫`];
+
+  } catch (err) {
+    return ['-', '-'];
+  }
 }
 
 // Fetch Bitcoin Price from Binance API (Spot Market)
