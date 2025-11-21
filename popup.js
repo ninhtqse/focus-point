@@ -115,7 +115,7 @@ async function fetchGoldPriceVN() {
 
 async function fetchSilverPriceVN() {
   try {
-        const url = 'https://api-utility.ninhtqse.site/sliver';
+        const url = 'https://utility-api.ninhtqse.xyz/sliver';
 
         const response = await fetch(url);
         const data = await response.json();
@@ -164,7 +164,7 @@ async function fetchEthereumPrice() {
 async function fetchP2PPrice()
 {
     try {
-        const url = 'https://api-utility.ninhtqse.site/p2p';
+        const url = 'https://utility-api.ninhtqse.xyz/p2p';
 
         const response = await fetch(url);
         const data = await response.json();
